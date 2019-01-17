@@ -4,6 +4,7 @@ import * as listActions from '../redux/actions/listActions'
 import React, { Component } from 'react'
 import Pokemon from '../components/pokemon'
 import Search from '../components/search'
+import { push } from 'connected-react-router'
 
 class ListPage extends Component {
   componentDidMount() {
@@ -14,13 +15,20 @@ class ListPage extends Component {
     this.props.filterPokemons(event.currentTarget.value)
   }
 
+  handleItemClick(name) {
+    this.props.push('/' + name)
+  }
+
   render() {
     let { displayedPokemons, isFetched, error } = this.props
 
     let pokemons = displayedPokemons.map(pokemon => {
       return (
         <li className="pokemons__item" key={pokemon.id}>
-          <Pokemon pokemon={pokemon} />
+          <Pokemon
+            pokemon={pokemon}
+            clickHandler={this.handleItemClick.bind(this)}
+          />
         </li>
       )
     })
@@ -53,7 +61,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   getPokemons: listActions.getPokemons,
-  filterPokemons: listActions.filterPokemons
+  filterPokemons: listActions.filterPokemons,
+  push
 }
 
 export default connect(

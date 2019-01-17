@@ -73,6 +73,17 @@ body {
   pointer-events: none;
 }
 
+.pokemon__stats {
+  background-color: #fff;
+  border: 1px solid #000;
+  max-width: 800px;
+  margin: 1em auto;
+  overflow: hidden;
+}
+
+.pokemon__stats img {
+  float: right;
+}
 @media (min-width: 992px) {
   .pokemon,
   .pokemon__sprite {

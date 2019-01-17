@@ -2,13 +2,14 @@ import React, { PureComponent } from 'react'
 
 class Pokemon extends PureComponent {
   render() {
-    const { pokemon } = this.props
+    const { pokemon, clickHandler } = this.props
 
     return (
       <div className="pokemon">
         <button
           type="button"
           className="pokemon__sprite"
+          onClick={() => clickHandler(pokemon.name)}
           style={{
             backgroundImage: `url(${`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
               pokemon.id
